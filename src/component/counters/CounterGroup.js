@@ -51,8 +51,19 @@ const mapStateToProps = (reduxStore)=> ({
   counterArr: reduxStore.counterGroup.counterArr
 });
 
-const mapDispatchToProps = (reduxStore)=> {
-
-};
+const mapDispatchToProps = (reduxStore)=> ({
+ incrementNumber: (id)=>{
+   return{
+     type: "INCREMENT_NUMBER",
+     payload: id
+   }
+ },
+ decrementNumber: (id)=>{
+   return{
+     type: "DECREMENT_NUMBER",
+     payload: id
+   }
+ }
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(CounterGroup);
