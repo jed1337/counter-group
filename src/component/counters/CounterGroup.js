@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import Counter from "./Counter";
 
 class CounterGroup extends Component {
@@ -44,3 +44,13 @@ class CounterGroup extends Component {
 }
 
 export default CounterGroup;
+
+// function mapStateToProps() {
+//
+// }
+//
+// function mapDispatchToProps() {
+//
+// }
+//
+// export default connect(mapStateToProps, mapDispatchToProps)(CounterGroup);

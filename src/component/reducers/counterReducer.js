@@ -4,7 +4,7 @@ let initialState = {
 };
 
 const counterReducer = (state = initialState, action) => {
-    return state;
+    return initialState;
 };
 
 export default counterReducer;
