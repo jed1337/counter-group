@@ -20,8 +20,6 @@ class CounterGroup extends Component {
     this.props.clearCounterSum();
   };
 
-
-
   render() {
     return (
       <div>
@@ -37,8 +35,8 @@ class CounterGroup extends Component {
           <Counter
             key={counterItem.id}
             id={counterItem.id}
-            count={counterItem.count}
-            onCounterValueChanged={this.counterUpdateCallback}
+            count={counterItem.number}
+            onCounterValueChanged={this.props.counterUpdateCallBack}
             onIncreaseAction={this.props.incrementNumber}
             onDecreaseAction={this.props.decrementNumber}
           />
@@ -74,10 +72,12 @@ const mapDispatchToProps = (dispatch)=> ({
      payload: generateCount
    }),
 
-  // counterUpdateCallback : changedNum => {
-  //   this.setState({ counterSum: this.state.counterSum + changedNum });
-  //   dispatch(,
-  //
+  counterUpdateCallBack : (updateValue) =>
+    dispatch({
+      type: "COUNTER_SUM",
+      payload: updateValue
+    }),
+
   clearCounterSum: () =>
     dispatch({
       type: "CLEAR_SUM"

@@ -3,10 +3,12 @@ import React, { Component } from "react";
 class Counter extends Component {
   increaseNumber = () => {
     this.props.onIncreaseAction(this.props.id);
+    this.props.onCounterValueChanged(1);
   };
 
   decreaseNumber = () => {
     this.props.onDecreaseAction(this.props.id);
+    this.props.onCounterValueChanged(-1);
   };
 
   render() {

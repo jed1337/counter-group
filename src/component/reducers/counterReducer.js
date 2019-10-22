@@ -32,9 +32,11 @@ const counterReducer = (state = initialState, action) => {
         case "GENERATE_COUNTERS":
             const generatedCounterArr = new Array(parseInt(action.payload))
                 .fill(0)
-                .map(()=>({id: generateRandomId(), count:0}));
+                .map(()=>({id: generateRandomId(), number:0}));
 
             return {...state, counterArr: generatedCounterArr};
+        case "COUNTER_SUM":
+            return{...state, counterSum: state.counterSum + action.payload};
         case "CLEAR_SUM":
             return {...state, counterSum: 0};
         default:
