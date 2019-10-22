@@ -1,4 +1,3 @@
-import Counter from "../counters/Counter";
 import React from "react";
 
 const initialState = {
