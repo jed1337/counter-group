@@ -3,12 +3,16 @@ import Counter from "./Counter";
 import {connect} from "react-redux";
 
 class CounterGroup extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      counterSum: 0,
-      counterArr: new Array(parseInt(this.props.defaultCount)).fill(0)
-    };
+  // constructor(props) {
+  //   super(props);
+  //   // this.state = {
+  //   //   counterSum: 0,
+  //   //   counterArr: new Array(parseInt(this.props.defaultCount)).fill(0)
+  //   // };
+  // }
+
+  componentWillMount() {
+    this.props.generateCounters(this.props.defaultCount);
   }
 
   regenrateCounters = () => {
@@ -31,12 +35,16 @@ class CounterGroup extends Component {
         </button>
         <br />
 
-        <span>总和：{this.state.counterSum}</span>
+        <span>总和：{this.props.counterSum}</span>
 
-        {this.state.counterArr.map(id => (
+        {this.props.counterArr.map(counterItem => (
           <Counter
-            key={new Date().getTime() + Math.random}
+            key={counterItem.id}
+            id={counterItem.id}
+            count={counterItem.count}
             onCounterValueChanged={this.counterUpdateCallback}
+            onIncreaseAction={this.props.incrementNumber}
+            onDecreaseAction={this.props.decrementNumber}
           />
         ))}
       </div>
@@ -63,7 +71,13 @@ const mapDispatchToProps = (reduxStore)=> ({
      type: "DECREMENT_NUMBER",
      payload: id
    }
- }
+ },
+  generateCounters: (generateCount)=>{
+   return{
+     type: "GENERATE_COUNTERS",
+     payload: generateCount
+   }
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CounterGroup);

@@ -3,6 +3,10 @@ let initialState = {
     counterArr:[]
 };
 
+function generateRandomId() {
+    return new Date().getTime() + Math.random;
+}
+
 const counterReducer = (state = initialState, action) => {
     switch(action.type){
         case "INCREMENT_NUMBER":
@@ -23,6 +27,12 @@ const counterReducer = (state = initialState, action) => {
                 }
             });
             return{...state, counterArr: decrementArr};
+        case "GENERATE_COUNTERS":
+            const generatedCounterArr = new Array(parseInt(action.payload))
+                .fill(0)
+                .map(()=>({id: generateRandomId(), count:0}));
+
+            return {...state, counterArr: generatedCounterArr};
         default:
             return state;
     }
