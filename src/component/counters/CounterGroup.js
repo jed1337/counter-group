@@ -24,18 +24,20 @@ class CounterGroup extends Component {
   render() {
     return (
       <div>
+        <input type="text" ref="countInput" />
+        <button onClick={this.regenrateCounters}>
+          Regenerate indicated Counters
+        </button>
+        <br />
+
+        <span>总和：{this.state.counterSum}</span>
+
         {this.state.counterArr.map(id => (
           <Counter
             key={new Date().getTime() + Math.random}
             onCounterValueChanged={this.counterUpdateCallback}
           />
         ))}
-        <input type="text" ref="countInput" />
-        <button onClick={this.regenrateCounters}>
-          Regenerate indicated Counters
-        </button>
-        <br />
-        <span>总和：{this.state.counterSum}</span>
       </div>
     );
   }
