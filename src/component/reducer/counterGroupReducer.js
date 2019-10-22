@@ -7,6 +7,7 @@ const initialState = {
 };
 
 export const counterGroupReducer = (state = initialState, {type, payload}) => {
+    console.log("payload is", payload);
     switch (type) {
         case "DECREASE_NUMBER":
             const changedDecreaseArr = state.counterArr.map(counterItem => {
@@ -42,7 +43,7 @@ export const counterGroupReducer = (state = initialState, {type, payload}) => {
                     .map(() => ({ count: 0, id: generateID() }))
             };
         case "CLEAR_COUNTER_SUM":
-            return {...state};
+            return {...state, counterSum: 0};
         default:
             return state;
     }

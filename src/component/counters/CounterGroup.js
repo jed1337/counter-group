@@ -21,20 +21,16 @@ class CounterGroup extends Component {
         return new Date().getTime() + Math.random();
     };
 
-    regenrateCounters = () => {
-        this.setState({
-            counterArr: new Array(parseInt(this.refs.countInput.value))
-                .fill(0)
-                .map(() => ({count: 0, id: this.generateID()})),
-            counterSum: 0
-        });
+    regenerateCounters = () => {
+        this.props.generateCounters(this.refs.countInput.value);
+        this.props.clearCounterSum();
     };
 
     render() {
         return (
             <div>
                 <input type="text" ref="countInput"/>
-                <button onClick={this.regenrateCounters}>
+                <button onClick={this.regenerateCounters}>
                     Regenerate indicated Counters
                 </button>
                 <br/>
