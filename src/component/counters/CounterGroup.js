@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Counter from "./Counter";
 import {connect} from "react-redux";
-import {counterSum} from "../actions";
+import {assignCounters, counterSum, regenerateCounters} from "../actions";
 
 class CounterGroup extends Component {
     constructor(props) {
@@ -85,12 +85,44 @@ class CounterGroup extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    counterSum: state.counterSum
+const mapDispatchToProps = dispatch => ({
+    decreaseNumber: (changedNum, id) =>
+        dispatch({
+            type: 'DECREASE_NUMBER',
+            payload: {changedNum, id}
+        }),
+    increaseNumber: (changedNum, id) =>
+        dispatch({
+            type: 'INCREASE_NUMBER',
+            payload: {changedNum, id}
+        }),
+    counterUpdateCallBack: changedNum =>
+        dispatch({
+            type: 'COUNTER_UPDATE_CALL_BACK',
+            payload: changedNum
+        }),
+    generateCounters: counterNum =>
+        dispatch({
+            type: 'GENERATE_COUNTERS',
+            payload: counterNum
+        }),
+    clearCounterSum: ()=>
+        dispatch({
+            type: 'CLEAR_COUNTER_SUM',
+            payload: 0
+        })
+});
+
+const mapStateToProps = reduxStore => ({
+    counterSum: reduxStore.counterSum,
+    counterArr: reduxStore.counterArr
 });
 // counterSum is a prop in CounterGroup, it will give counterSum a new value of state.counterSum whitch come from ./reducer switch return
 // you try to imagine counterSum will be passed to this.props.counterSum in CounterGroup like the result of <CounterGroup counterSum={state.counterSum}/>
 
-connect(mapStateToProps)(CounterGroup)
+// connect(mapStateToProps)(CounterGroup)
 
-export default connect(mapStateToProps)(CounterGroup);//let CounterGroup and Redux know each other
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(CounterGroup);//let CounterGroup and Redux know each other

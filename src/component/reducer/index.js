@@ -11,7 +11,7 @@ function generateId(){
 }
 
 export default (state = initialState, {type, payload}) => {
-    console.log(payload);
+    console.log("payload", payload);
     let newState = {...state};
     switch (type) {
         case "COUNTERSUM":
@@ -25,6 +25,9 @@ export default (state = initialState, {type, payload}) => {
                     <Counter id={generateId()}/>
                 );
             }
+            return newState;
+        case "ASSIGN_COUNTERS":
+            newState.counterArr = payload.counters;
             return newState;
         default:
             return state;
