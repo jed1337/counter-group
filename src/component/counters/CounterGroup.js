@@ -64,6 +64,12 @@ class CounterGroup extends Component {
     render() {
         return (
             <div>
+                <input type="text" ref="countInput"/>
+                <button onClick={this.regenrateCounters}>
+                    Regenerate indicated Counters
+                </button>
+                <br/>
+                <span>总和：{this.props.counterSum}</span>
                 {this.state.counterArr.map(counterItem => (
                     <Counter
                         key={counterItem.id}
@@ -74,12 +80,6 @@ class CounterGroup extends Component {
                         onClickDecreased={this.decreaseNumber}
                     />
                 ))}
-                <input type="text" ref="countInput"/>
-                <button onClick={this.regenrateCounters}>
-                    Regenerate indicated Counters
-                </button>
-                <br/>
-                <span>总和：{this.props.counterSum}</span>
             </div>
         );
     }
