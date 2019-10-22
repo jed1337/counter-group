@@ -1,10 +1,7 @@
-let state = {
-    counterSum:0,
-    counterArr:[]
-};
+import {combineReducers} from "redux";
 
-const rootReducer = ()=>{
-    return {
+const rootReducer = combineReducers({
+    counterGroup: counterReducer
+});
 
-    }
-}
+export default rootReducer;
