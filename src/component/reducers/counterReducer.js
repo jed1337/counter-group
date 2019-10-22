@@ -33,6 +33,8 @@ const counterReducer = (state = initialState, action) => {
                 .map(()=>({id: generateRandomId(), count:0}));
 
             return {...state, counterArr: generatedCounterArr};
+        case "CLEAR_SUM":
+            return {...state, counterSum: 0};
         default:
             return state;
     }

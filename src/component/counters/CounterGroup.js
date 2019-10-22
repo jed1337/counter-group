@@ -16,15 +16,11 @@ class CounterGroup extends Component {
   }
 
   regenrateCounters = () => {
-    this.setState({
-      counterArr: new Array(parseInt(this.refs.countInput.value)).fill(0),
-      counterSum: 0
-    });
+    this.props.generateCounters(this.refs.countInput.value);
+    this.props.clearCounterSum();
   };
 
-  counterUpdateCallback = changedNum => {
-    this.setState({ counterSum: this.state.counterSum + changedNum });
-  };
+
 
   render() {
     return (
@@ -59,25 +55,33 @@ const mapStateToProps = (reduxStore)=> ({
   counterArr: reduxStore.counterGroup.counterArr
 });
 
-const mapDispatchToProps = (reduxStore)=> ({
- incrementNumber: (id)=>{
-   return{
+const mapDispatchToProps = (dispatch)=> ({
+ incrementNumber: (id)=>
+   dispatch({
      type: "INCREMENT_NUMBER",
      payload: id
-   }
- },
- decrementNumber: (id)=>{
-   return{
+   }),
+
+ decrementNumber: (id)=>
+   dispatch({
      type: "DECREMENT_NUMBER",
      payload: id
-   }
- },
-  generateCounters: (generateCount)=>{
-   return{
+   }),
+
+  generateCounters: (generateCount)=>
+   dispatch({
      type: "GENERATE_COUNTERS",
      payload: generateCount
-   }
-  }
+   }),
+
+  // counterUpdateCallback : changedNum => {
+  //   this.setState({ counterSum: this.state.counterSum + changedNum });
+  //   dispatch(,
+  //
+  clearCounterSum: () =>
+    dispatch({
+      type: "CLEAR_SUM"
+    }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CounterGroup);
