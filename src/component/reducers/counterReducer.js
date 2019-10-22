@@ -4,7 +4,9 @@ let initialState = {
 };
 
 function generateRandomId() {
-    return new Date().getTime() + Math.random;
+    const id = new Date().getTime() + Math.random();
+    console.log(id);
+    return id;
 }
 
 const counterReducer = (state = initialState, action) => {
