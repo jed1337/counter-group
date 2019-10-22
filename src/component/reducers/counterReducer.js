@@ -3,7 +3,8 @@ let initialState = {
     counterArr:[]
 };
 
+const counterReducer = (state = initialState, action) => {
+    return state;
+};
 
-const counterReducer = (state = initialState, action)=>{
-
-}
+export default counterReducer;

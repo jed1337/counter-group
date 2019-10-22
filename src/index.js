@@ -4,8 +4,12 @@ import './index.css';
 import CounterGroup from './component/counters/CounterGroup';
 import * as serviceWorker from './serviceWorker';
 import {createStore} from "redux";
+import rootReducer from "./component/reducers";
 
-const store = createStore(rootReducer);
+const store = createStore(
+    rootReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 ReactDOM.render(<CounterGroup defaultCount='3' />, document.getElementById('root'));
 
