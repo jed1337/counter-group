@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import Counter from "./Counter";
+import {connect} from "react-redux";
 
 class CounterGroup extends Component {
   constructor(props) {
@@ -43,14 +44,15 @@ class CounterGroup extends Component {
   }
 }
 
-export default CounterGroup;
+// export default CounterGroup;
 
-// function mapStateToProps() {
-//
-// }
-//
-// function mapDispatchToProps() {
-//
-// }
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(CounterGroup);
+const mapStateToProps = (reduxStore)=> ({
+  counterSum: reduxStore.counterGroup.counterSum,
+  counterArr: reduxStore.counterGroup.counterArr
+});
+
+const mapDispatchToProps = (reduxStore)=> {
+
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CounterGroup);
