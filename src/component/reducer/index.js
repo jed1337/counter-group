@@ -1,17 +1,31 @@
+import Counter from "../counters/Counter";
+import React from "react";
+
 const initialState = {
     counterSum: 0,
     counterArr: [],
-    numberOfCounters: 0
 };
+
+function generateId(){
+    return new Date().getTime() + Math.random();
+}
 
 export default (state = initialState, {type, payload}) => {
     console.log(payload);
+    let newState = {...state};
     switch (type) {
         case "COUNTERSUM":
-            let newState = {...state};
             newState.counterSum = state.counterSum + payload;
             return newState;
             // return {counterSum: state.counterSum + payload};
+        case "REGENERATE_COUNTERS":
+            newState.counterArr=[];
+            for(let i=0;i<payload.numberOfCounters;i++){
+                newState.counterArr.push(
+                    <Counter id={generateId()}/>
+                );
+            }
+            return newState;
         default:
             return state;
     }

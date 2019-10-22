@@ -5,3 +5,9 @@ export const counterSum = (changedNum) => {
     }
 };
 
+export const regenerateCounters = (numberOfCounters) => {
+    return {
+        type: "REGENERATE_COUNTERS",
+        numberOfCounters: numberOfCounters
+    };
+};
