@@ -1,15 +1,15 @@
-
-const initialState = { 
-  counterSum: 0
+const initialState = {
+    counterSum: 0,
+    counterArr: []
 };
 
-export default (state = initialState, { type, payload }) => {
-  switch (type) {
-    case "COUNTERSUM":
-    console.log(payload)
-      return { counterSum: state.counterSum + payload };
-    default:
-      return state;
-  }
+export default (state = initialState, {type, payload}) => {
+    switch (type) {
+        case "COUNTERSUM":
+            console.log(payload);
+            return {counterSum: state.counterSum + payload};
+        default:
+            return state;
+    }
 };
 
