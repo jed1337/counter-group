@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import Counter from "./Counter";
 import {connect} from "react-redux";
+import {counterSum} from "../actions";
 
 class CounterGroup extends Component {
     constructor(props) {
@@ -27,11 +28,13 @@ class CounterGroup extends Component {
     };
 
     counterUpdateCallback = changedNum => {
+        this.props.dispatch(counterSum(changedNum));
+
         // this.setState({ counterSum: this.state.counterSum + changedNum });
-        this.props.dispatch({ //this dispatch will wuto inject by connect() method
-            type: "COUNTERSUM",
-            payload: changedNum
-        }); //{type: "", payload: xxx} named action, it will bo translated to ./reducer
+        // this.props.dispatch({ //this dispatch will wuto inject by connect() method
+        //     type: "COUNTERSUM",
+        //     payload: changedNum
+        // }); //{type: "", payload: xxx} named action, it will bo translated to ./reducer
     };
 
     increaseNumber = (changedNum, id) => {
