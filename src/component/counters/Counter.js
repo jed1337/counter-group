@@ -1,11 +1,6 @@
 import React, {Component} from "react";
 
 class Counter extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {};
-    // }
-
     increaseNumber = () => {
         this.props.onCounterValueChanged(1);
         this.props.onClickIncreased(1, this.props.id);
