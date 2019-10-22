@@ -33,7 +33,7 @@ export const counterGroupReducer = (state = initialState, {type, payload}) => {
 
             return {...state, counterArr: [...changeIncreaseArr]};
         case "COUNTER_UPDATE_CALL_BACK":
-            return {...state};
+            return {...state, counterSum: state.counterSum+payload};
         case "GENERATE_COUNTERS":
             return {
                 ...state,
