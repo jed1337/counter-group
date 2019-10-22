@@ -5,13 +5,14 @@ const initialState = {
     counterArr: [],
 };
 
-export const counterGroupReducer = (state = initialState, {type, payload}) => {
-    console.log("payload is", payload);
-    switch (type) {
+// export const counterGroupReducer = (state = initialState, {type, action.payload}) => {
+export const counterGroupReducer = (state = initialState, action) => {
+    console.log("action 1is", action);
+    switch (action.type) {
         case "DECREASE_NUMBER":
             const changedDecreaseArr = state.counterArr.map(counterItem => {
-                if (counterItem.id === payload.id) {
-                    return {id: payload.id, count: counterItem.count - payload.changedNum};
+                if (counterItem.id === action.payload.id) {
+                    return {id: action.payload.id, count: counterItem.count - action.payload.changedNum};
                 } else {
                     return counterItem;
                 }
@@ -21,10 +22,10 @@ export const counterGroupReducer = (state = initialState, {type, payload}) => {
 
         case "INCREASE_NUMBER":
             const changeIncreaseArr = state.counterArr.map(counterItem => {
-                if (counterItem.id === payload.id) {
+                if (counterItem.id === action.payload.id) {
                     return {
-                        id: payload.id,
-                        count: counterItem.count + payload.changedNum
+                        id: action.payload.id,
+                        count: counterItem.count + action.payload.changedNum
                     };
                 } else {
                     return counterItem;
@@ -33,11 +34,11 @@ export const counterGroupReducer = (state = initialState, {type, payload}) => {
 
             return {...state, counterArr: [...changeIncreaseArr]};
         case "COUNTER_UPDATE_CALL_BACK":
-            return {...state, counterSum: state.counterSum+payload};
+            return {...state, counterSum: state.counterSum+action.payload};
         case "GENERATE_COUNTERS":
             return {
                 ...state,
-                counterArr: new Array(parseInt(payload))
+                counterArr: new Array(parseInt(action.payload))
                     .fill(0)
                     .map(() => ({ count: 0, id: generateID() }))
             };
